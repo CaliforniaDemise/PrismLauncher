@@ -36,7 +36,6 @@
 #include "IconUtils.h"
 
 #include <QDirIterator>
-#include "FileSystem.h"
 
 namespace {
 static const QStringList validIconExtensions = { { "svg", "png", "ico", "gif", "jpg", "jpeg" } };
@@ -65,7 +64,7 @@ QString getIconFilter()
 
 bool isIconSuffix(QString suffix)
 {
-    return validIconExtensions.contains(suffix);
+	return true; // Can't use validIconExtensions because FTB icons don't work
 }
 
 }  // namespace IconUtils

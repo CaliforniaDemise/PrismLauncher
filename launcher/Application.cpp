@@ -105,6 +105,8 @@
 #include "icons/IconList.h"
 #include "net/HttpMetaCache.h"
 
+#include "ui/GuiUtil.h"
+
 #include "java/JavaInstallList.h"
 
 #include "updater/ExternalUpdater.h"
@@ -766,9 +768,10 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
             m_settings->reset("CFKeyOverride");
         }
         m_settings->registerSetting("ModrinthToken", "");
-        m_settings->registerSetting("UserAgentOverride", "");
+		m_settings->registerSetting("FlameKeyShouldBeFetchedOnStartup", true);
+		m_settings->registerSetting("UserAgentOverride", "");
 
-        // FTBApp instances
+		// FTBApp instances
         m_settings->registerSetting("FTBAppInstancesPath", "");
 
         // Init page provider
@@ -866,7 +869,8 @@ Application::Application(int& argc, char** argv) : QApplication(argc, argv)
         m_metacache->addBase("general", QDir("cache").absolutePath());
         m_metacache->addBase("ATLauncherPacks", QDir("cache/ATLauncherPacks").absolutePath());
         m_metacache->addBase("FTBPacks", QDir("cache/FTBPacks").absolutePath());
-        m_metacache->addBase("TechnicPacks", QDir("cache/TechnicPacks").absolutePath());
+		m_metacache->addBase("ModpacksCHPacks", QDir("cache/ModpacksCHPacks").absolutePath());
+		m_metacache->addBase("TechnicPacks", QDir("cache/TechnicPacks").absolutePath());
         m_metacache->addBase("FlamePacks", QDir("cache/FlamePacks").absolutePath());
         m_metacache->addBase("FlameMods", QDir("cache/FlameMods").absolutePath());
         m_metacache->addBase("ModrinthPacks", QDir("cache/ModrinthPacks").absolutePath());
@@ -1196,6 +1200,20 @@ void Application::performMainStartupAction()
             return;
         }
     }
+
+	{
+		bool shouldFetch = m_settings->get("FlameKeyShouldBeFetchedOnStartup").toBool();
+		if (!BuildConfig.FLAME_API_KEY_API_URL.isEmpty() && shouldFetch && capabilities() & Capability::SupportsFlame) {
+			// don't ask, just fetch
+			QString apiKey = GuiUtil::fetchFlameKey();
+			if (!apiKey.isEmpty()) {
+				m_settings->set("FlameKeyOverride", apiKey);
+				updateCapabilities();
+			}
+			m_settings->set("FlameKeyShouldBeFetchedOnStartup", false);
+		}
+	}
+
     if (!m_mainWindow) {
         // normal main window
         showMainWindow(false);

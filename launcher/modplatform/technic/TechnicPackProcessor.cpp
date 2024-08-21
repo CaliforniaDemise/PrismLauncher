@@ -190,8 +190,9 @@ void Technic::TechnicPackProcessor::run(SettingsObjectPtr globalSettings,
             } else {
                 // <Technic library name prefix> -> <our component name>
                 static QMap<QString, QString> loaderMap{ { "net.minecraftforge:minecraftforge:", "net.minecraftforge" },
+														 { "net.neoforged:neoforge:", "net.neoforged" },
                                                          { "net.fabricmc:fabric-loader:", "net.fabricmc.fabric-loader" },
-                                                         { "org.quiltmc:quilt-loader:", "org.quiltmc.quilt-loader" } };
+														 { "org.quiltmc:quilt-loader:", "org.quiltmc.quilt-loader" } };
                 for (const auto& loader : loaderMap.keys()) {
                     if (libraryName.startsWith(loader)) {
                         components->setComponentVersion(loaderMap.value(loader), libraryName.section(':', 2));

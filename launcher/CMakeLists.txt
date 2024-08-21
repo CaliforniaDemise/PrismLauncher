@@ -120,6 +120,8 @@ set(NET_SOURCES
     net/Download.h
     net/FileSink.cpp
     net/FileSink.h
+	net/FetchFlameAPIKey.cpp
+	net/FetchFlameAPIKey.h
     net/HttpMetaCache.cpp
     net/HttpMetaCache.h
     net/MetaCacheSink.cpp
@@ -539,6 +541,13 @@ set(MODRINTH_SOURCES
     modplatform/modrinth/ModrinthPackExportTask.h
 )
 
+set(MODPACKSCH_SOURCES
+	modplatform/modpacksch/FTBPackInstallTask.cpp
+	modplatform/modpacksch/FTBPackInstallTask.h
+	modplatform/modpacksch/FTBPackManifest.cpp
+	modplatform/modpacksch/FTBPackManifest.h
+)
+
 set(PACKWIZ_SOURCES
     modplatform/packwiz/Packwiz.h
     modplatform/packwiz/Packwiz.cpp
@@ -713,7 +722,7 @@ set(LOGIC_SOURCES
     ${NET_SOURCES}
     ${LAUNCH_SOURCES}
     ${UPDATE_SOURCES}
-    ${NEWS_SOURCES}
+##    ${NEWS_SOURCES}
     ${MINECRAFT_SOURCES}
     ${SCREENSHOTS_SOURCES}
     ${TASKS_SOURCES}
@@ -727,7 +736,8 @@ set(LOGIC_SOURCES
     ${FTB_SOURCES}
     ${FLAME_SOURCES}
     ${MODRINTH_SOURCES}
-    ${PACKWIZ_SOURCES}
+	${MODPACKSCH_SOURCES}
+	${PACKWIZ_SOURCES}
     ${TECHNIC_SOURCES}
     ${ATLAUNCHER_SOURCES}
 )
@@ -961,6 +971,13 @@ SET(LAUNCHER_SOURCES
     ui/pages/modplatform/modrinth/ModrinthModel.cpp
     ui/pages/modplatform/modrinth/ModrinthModel.h
 
+	ui/pages/modplatform/ftb/FtbFilterModel.cpp
+    ui/pages/modplatform/ftb/FtbFilterModel.h
+    ui/pages/modplatform/ftb/FtbListModel.cpp
+    ui/pages/modplatform/ftb/FtbListModel.h
+    ui/pages/modplatform/ftb/FtbPage.cpp
+    ui/pages/modplatform/ftb/FtbPage.h
+
     ui/pages/modplatform/technic/TechnicModel.cpp
     ui/pages/modplatform/technic/TechnicModel.h
     ui/pages/modplatform/technic/TechnicPage.cpp
@@ -1008,8 +1025,8 @@ SET(LAUNCHER_SOURCES
     ui/dialogs/NewComponentDialog.h
     ui/dialogs/NewInstanceDialog.cpp
     ui/dialogs/NewInstanceDialog.h
-    ui/dialogs/NewsDialog.cpp
-    ui/dialogs/NewsDialog.h
+#    ui/dialogs/NewsDialog.cpp
+#    ui/dialogs/NewsDialog.h
     ui/pagedialog/PageDialog.cpp
     ui/pagedialog/PageDialog.h
     ui/dialogs/ProgressDialog.cpp
@@ -1150,6 +1167,8 @@ qt_wrap_ui(LAUNCHER_UI
     ui/pages/modplatform/ImportPage.ui
     ui/pages/modplatform/OptionalModDialog.ui
     ui/pages/modplatform/modrinth/ModrinthPage.ui
+	ui/pages/modplatform/ftb/FtbPage.ui
+	ui/pages/modplatform/legacy_ftb/Page.ui
     ui/pages/modplatform/technic/TechnicPage.ui
     ui/widgets/InstanceCardWidget.ui
     ui/widgets/CustomCommands.ui
@@ -1163,7 +1182,7 @@ qt_wrap_ui(LAUNCHER_UI
     ui/dialogs/ProgressDialog.ui
     ui/dialogs/NewInstanceDialog.ui
     ui/dialogs/NewComponentDialog.ui
-    ui/dialogs/NewsDialog.ui
+#    ui/dialogs/NewsDialog.ui
     ui/dialogs/ProfileSelectDialog.ui
     ui/dialogs/ExportInstanceDialog.ui
     ui/dialogs/ExportPackDialog.ui

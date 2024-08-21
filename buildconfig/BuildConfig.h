@@ -120,12 +120,12 @@ class Config {
      * This is used to fetch the news RSS feed.
      * It defaults in CMakeLists.txt to "https://multimc.org/rss.xml"
      */
-    QString NEWS_RSS_URL;
+//    QString NEWS_RSS_URL;
 
     /**
      * URL that gets opened when the user clicks "More News"
      */
-    QString NEWS_OPEN_URL;
+//    QString NEWS_OPEN_URL;
 
     /**
      * URL (with arg %1 to be substituted with page-id) that gets opened when the user requests help
@@ -146,6 +146,11 @@ class Config {
      * Client API key for CurseForge
      */
     QString FLAME_API_KEY;
+
+	/**
+     * URL to fetch the Client API key for CurseForge from
+     */
+    QString FLAME_API_KEY_API_URL;
 
     /**
      * Metadata repository URL prefix

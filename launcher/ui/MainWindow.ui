@@ -59,33 +59,6 @@
    <addaction name="actionCAT"/>
    <addaction name="actionAccountsButton"/>
   </widget>
-  <widget class="QToolBar" name="newsToolBar">
-   <property name="windowTitle">
-    <string>News Toolbar</string>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::BottomToolBarArea|Qt::TopToolBarArea</set>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>16</width>
-     <height>16</height>
-    </size>
-   </property>
-   <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonTextBesideIcon</enum>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>BottomToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionMoreNews"/>
-  </widget>
   <widget class="WideBar" name="instanceToolBar">
    <property name="windowTitle">
     <string>Instance Toolbar</string>
@@ -220,7 +193,6 @@
     <addaction name="actionDISCORD"/>
     <addaction name="actionREDDIT"/>
     <addaction name="separator"/>
-    <addaction name="actionMoreNews"/>
     <addaction name="actionCheckUpdate"/>
     <addaction name="actionOpenWiki"/>
     <addaction name="actionAbout"/>
@@ -232,18 +204,6 @@
    <addaction name="accountsMenu"/>
    <addaction name="helpMenu"/>
   </widget>
-  <action name="actionMoreNews">
-   <property name="icon">
-    <iconset theme="news">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>More news...</string>
-   </property>
-   <property name="toolTip">
-    <string>Open the development blog to read more news about %1.</string>
-   </property>
-  </action>
   <action name="actionCAT">
    <property name="checkable">
     <bool>true</bool>
