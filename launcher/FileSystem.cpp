@@ -36,6 +36,7 @@
  */
 
 #include "FileSystem.h"
+#include <qlogging.h>
 #include <QPair>
 
 #include "BuildConfig.h"
@@ -921,6 +922,10 @@ bool createShortcut(QString destination, QString target, QStringList args, QStri
     if (destination.isEmpty()) {
         destination = PathCombine(getDesktopDir(), RemoveInvalidFilenameChars(name));
     }
+	if (!ensureFilePathExists(destination)) {
+		qWarning() << "Destination path can't be created!";
+		return false;
+	}
 #if defined(Q_OS_MACOS)
     // Create the Application
     QDir applicationDirectory =
